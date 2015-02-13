@@ -46,11 +46,11 @@ $(document).ready(function(){
 		$("#triangle_type").text(results);
 		if(results === "a triangle"){
 			$("#dont").text(" don't");
-		};
-
-		var triangleHtml = createTriangleHtml(sideA, sideB, sideC)
-		debugger;
-		$("#triangle_polygon").append(triangleHtml);
+		} else {
+			var triangleHtml = createTriangleHtml(sideA, sideB, sideC)
+			$("#triangle_polygon").append(triangleHtml);
+		}
+		
 		revealResults();
 		
 		event.preventDefault();
