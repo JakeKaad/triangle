@@ -1,14 +1,14 @@
 var triangular = function(sideA, sideB, sideC){
 	if ( isATriangle(sideA, sideB, sideC) ){
 		if(allSidesEqual(sideA, sideB, sideC)){
-			return "equilateral";
+			return "an equilateral triangle";
 		} else if(twoSidesEqual(sideA, sideB, sideC)) {
-			return "isoscoles";
+			return "an isoscoles triangle";
 		} else if(noSidesEqual(sideA, sideB, sideC)) {
-			return "scalene";
+			return "a scalene triangle";
 		}
 	} else {
-		return "not a triangle"
+		return "a triangle"
 	}
 };
 
@@ -29,3 +29,48 @@ var twoSidesEqual = function(sideA, sideB, sideC) {
 var noSidesEqual = function(sideA, sideB, sideC) {
 	return (sideA !== sideB && sideA !== sideC && sideB !== sideC);
 };
+
+
+// Start jQuery functions for index.html:
+
+$(document).ready(function(){
+	$("#triangle").submit(function(event){
+		resetResults();
+
+		var sideA = parseInt($("#sideA").val());
+		var sideB = parseInt($("#sideB").val());
+		var sideC = parseInt($("#sideC").val());
+		var results = triangular(sideA, sideB, sideC);
+
+		$("#triangle_type").text(results);
+		if(results === "a triangle"){
+			$("#dont").text(" don't");
+		};
+
+		$(".results").toggle(function(){
+			$(this).fadeIn("fast");
+		});
+		event.preventDefault();
+	});
+
+	$("sideA").click(function(){
+		alert("test");
+	});
+
+	$("sideA").click(function(){
+		alert("test");
+	});
+});
+
+var resetResults = function(){
+	$(".results").hide();
+	$("#dont").text("");
+	$("#triangle_type").text("");
+};
+
+
+
+
+
+
+
