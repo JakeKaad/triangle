@@ -31,6 +31,7 @@ var noSidesEqual = function(sideA, sideB, sideC) {
 };
 
 
+
 // Start jQuery functions for index.html:
 
 $(document).ready(function(){
@@ -47,7 +48,10 @@ $(document).ready(function(){
 			$("#dont").text(" don't");
 		};
 
-		revealResults();
+		var points = createPoints(sideA, sideB, sideC)
+		debugger;
+		$("#triangle_polygon").append(points);
+		revealResults(createPoints(sideA, sideB, sideC));
 		
 		event.preventDefault();
 	});
@@ -59,7 +63,16 @@ var resetResults = function(){
 	$(".results").hide();
 	$("#dont").text("");
 	$("#triangle_type").text("");
+	$(".triangle_bit").remove();
 };
+
+var createPoints = function(a, b, c) {
+	var pointA = (a).toString() + ", " + (0).toString() + " "
+	var pointB = (b * 20).toString() + ", " + (0) + " ";
+	var pointC = (c * 10).toString() + ", " + (c * 10) + " ";
+	return "<svg height='250' width='500' class='triangle_bit'><polygon points='" + pointA + pointB + pointC + "' style='fill:lime;stroke:purple;stroke-width:1' /></svg>";
+}
+
 
 var revealResults = function(){
 	$(".results").toggle(function(){

@@ -11,7 +11,7 @@ describe("triangular", function(){
     expect(triangular(2, 3, 4)).to.equal("a scalene triangle");
   });
 
-  it("returns 'a triangle' if the provided lengths cannot make a triangle", function(){
+  it("returns ' a triangle' if the provided lengths cannot make a triangle", function(){
     expect(triangular(2, 2, 8)).to.equal("a triangle");
   });
 });
