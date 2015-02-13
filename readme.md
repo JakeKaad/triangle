@@ -18,4 +18,4 @@
 		<li>Likewise, I hadn't used an x/y coordinate for awhile.  It took me awhile to get my triangle points down so it at least kinda looked like the triangle entered.
 		<li>html continues to be a weakness of mine.  I am starting to get the hang of it, but even simple pages like these provide some challenge</li>
 	</ul>
-<p>
+</p>
