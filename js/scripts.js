@@ -47,26 +47,26 @@ $(document).ready(function(){
 			$("#dont").text(" don't");
 		};
 
-		$(".results").toggle(function(){
-			$(this).fadeIn("fast");
-		});
+		revealResults();
+		
 		event.preventDefault();
 	});
-
-	$("sideA").click(function(){
-		alert("test");
-	});
-
-	$("sideA").click(function(){
-		alert("test");
-	});
 });
+
+// jQuery functions 
 
 var resetResults = function(){
 	$(".results").hide();
 	$("#dont").text("");
 	$("#triangle_type").text("");
 };
+
+var revealResults = function(){
+	$(".results").toggle(function(){
+		$(this).fadeIn("fast");
+	});
+};
+
 
 
 
