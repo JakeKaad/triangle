@@ -15,3 +15,9 @@ describe("triangular", function(){
     expect(triangular(2, 2, 8)).to.equal("a triangle");
   });
 });
+
+describe("createTriangleHtml", function(){
+  it("returns the correct svg and polygon tags scaled to the lengths of the sides users inputted", function(){
+    expect(createTriangleHtml(2, 3, 4)).to.equal('<svg height=\'2000\' width=\'2000\' class=\'triangle_bit\'><polygon points=\'2, 0 60, 0 40, 40 \' style=\'fill:lime;stroke:purple;stroke-width:1\' /></svg>')
+  });
+});

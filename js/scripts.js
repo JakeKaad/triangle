@@ -1,16 +1,14 @@
+
 var triangular = function(sideA, sideB, sideC){
 	if ( isATriangle(sideA, sideB, sideC) ){
-		if(allSidesEqual(sideA, sideB, sideC)){
-			return "an equilateral triangle";
-		} else if(twoSidesEqual(sideA, sideB, sideC)) {
-			return "an isoscoles triangle";
-		} else if(noSidesEqual(sideA, sideB, sideC)) {
-			return "a scalene triangle";
-		}
+		return triangleType(sideA, sideB, sideC);
 	} else {
+		// this is actually when it isn't a triangle, the string is work well with existing markup
 		return "a triangle"
 	}
 };
+
+// All triangle verification methods were refactored out of triangular using green specs. 
 
 var isATriangle = function(sideA, sideB, sideC) {
 	return ((sideA + sideB) > sideC) && ((sideA + sideC) > sideB) & ((sideB + sideC) > sideC);
@@ -29,6 +27,16 @@ var twoSidesEqual = function(sideA, sideB, sideC) {
 var noSidesEqual = function(sideA, sideB, sideC) {
 	return (sideA !== sideB && sideA !== sideC && sideB !== sideC);
 };
+
+var triangleType = function(sideA, sideB, sideC) {
+	if(allSidesEqual(sideA, sideB, sideC)){
+			return "an equilateral triangle";
+		} else if(twoSidesEqual(sideA, sideB, sideC)) {
+			return "an isoscoles triangle";
+		} else if(noSidesEqual(sideA, sideB, sideC)) {
+			return "a scalene triangle";
+		}
+	};
 
 
 
@@ -50,7 +58,7 @@ $(document).ready(function(){
 			var triangleHtml = createTriangleHtml(sideA, sideB, sideC)
 			$("#triangle_polygon").append(triangleHtml);
 		}
-		
+
 		revealResults();
 		
 		event.preventDefault();
