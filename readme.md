@@ -17,5 +17,6 @@
 		<li>Its been years since geometry, I had to remember things like the pythagoream therum and the laws of inequality</li>
 		<li>Likewise, I hadn't used an x/y coordinate for awhile.  It took me awhile to get my triangle points down so it at least kinda looked like the triangle entered.
 		<li>html continues to be a weakness of mine.  I am starting to get the hang of it, but even simple pages like these provide some challenge</li>
+		<li>Note: The triangles generated in the SVG diagram are not accurate.  I spent about 2 hours trying to reverse engineer the pythagoream theorum to no avail.  So we are left with this approximation for now.  I will consult with my engineering friends and try to get it fixed.
 	</ul>
-</	p>
+</p>
