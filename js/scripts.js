@@ -48,10 +48,10 @@ $(document).ready(function(){
 			$("#dont").text(" don't");
 		};
 
-		var points = createPoints(sideA, sideB, sideC)
+		var triangleHtml = createTriangleHtml(sideA, sideB, sideC)
 		debugger;
-		$("#triangle_polygon").append(points);
-		revealResults(createPoints(sideA, sideB, sideC));
+		$("#triangle_polygon").append(triangleHtml);
+		revealResults();
 		
 		event.preventDefault();
 	});
@@ -66,11 +66,11 @@ var resetResults = function(){
 	$(".triangle_bit").remove();
 };
 
-var createPoints = function(a, b, c) {
+var createTriangleHtml = function(a, b, c) {
 	var pointA = (a).toString() + ", " + (0).toString() + " "
 	var pointB = (b * 20).toString() + ", " + (0) + " ";
 	var pointC = (c * 10).toString() + ", " + (c * 10) + " ";
-	return "<svg height='250' width='500' class='triangle_bit'><polygon points='" + pointA + pointB + pointC + "' style='fill:lime;stroke:purple;stroke-width:1' /></svg>";
+	return "<svg height='2000' width='2000' class='triangle_bit'><polygon points='" + pointA + pointB + pointC + "' style='fill:lime;stroke:purple;stroke-width:1' /></svg>";
 }
 
 
