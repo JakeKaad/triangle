@@ -8,6 +8,10 @@ describe("triangular", function(){
   });
 
   it("returns 'scalene' when no sides are the same length", function(){
-    expect(triangular(1, 2, 3)).to.equal("scalene");
+    expect(triangular(2, 3, 4)).to.equal("scalene");
+  });
+
+  it("returns 'not a triangle' if the provided lengths cannot make a triangle", function(){
+    expect(triangular(2, 2, 8)).to.equal("not a triangle");
   });
 });
