@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Change Maker</title>
+    <title>Triangular</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css" charset="utf-8">
     <script src="./js/jquery-1.11.2.js"></script>
@@ -9,35 +9,36 @@
   </head>
   <body>
     <div class="container">
-      <div class=page-header>
-        <h2>Change Maker</h2>
+      <div class="header">
+        <h1>Triangular!</h1>
       </div>
+
+      <p> Please enter 3 side lengths to see what kind of triangle you have.</p>
       <form id="change_maker" class="form-horizontal">
 
         <div class="form-group">
-          <label for="change">Change value</label>
-          <span>$</span><input id="change" name="change" type="text" placeholder="0.99"></input>
+          <label for="sideA">Side A</label>
+          <input id="sideA" type="text" placeholder="5"/>
         </div>
 
         <div class="form-group">
-          <label for="coins">Available coins</label>
-          <input id="25" name="change[]" type="checkbox" checked>Quarters</input>
-          <input id="10" name="change[]" type="checkbox" checked>Dimes</input>
-          <input id="5" name="change[]" type="checkbox" checked>Nickels</input>
-          <input id="1" name="change[]" type="checkbox" checked>Pennies</input>
+          <label for="sideB">Side B</label>
+          <input id=="sideB" type="text" placeholder="5"/>
         </div>
 
-        <button type="submit" class="btn btn-success">Make Change!</button>
+        <div class="form-group">
+          <label for="sideC">Side C</label>
+          <input id=="sideC" type="text" placeholder="5"/>
+        </div>
+
+        <button type="submit" class="btn btn-success">Triangulate</button>
       </form>
-      <br>
+
       <div class="well results">
         <p>
-          Your change is: <span id="change_given"></span>
+          You have: <span id="triangle_type"></span>
         </p>
-        <button id="make_it_rain", class="btn btn-danger">Make it rain!</button>
-        <div id="bank", class="well"></div>
       </div>
-      <div class="coins"></div>
     </div>
   </body>
 </html>
