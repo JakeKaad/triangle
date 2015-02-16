@@ -8,7 +8,7 @@ var triangular = function(sideA, sideB, sideC){
 	}
 };
 
-// All triangle verification methods were refactored out of triangular using green specs. 
+// All triangle verification methods were refactored out of triangular using green specs.
 
 var isATriangle = function(sideA, sideB, sideC) {
 	return ((sideA + sideB) > sideC) && ((sideA + sideC) > sideB) & ((sideB + sideC) > sideC);
@@ -19,8 +19,8 @@ var allSidesEqual = function(sideA, sideB, sideC) {
 };
 
 var twoSidesEqual = function(sideA, sideB, sideC) {
-	return ((sideA === sideB && sideA !== sideC) || 
-					(sideA === sideC && sideA !== sideB) || 
+	return ((sideA === sideB && sideA !== sideC) ||
+					(sideA === sideC && sideA !== sideB) ||
 					(sideB === sideC && sideB !== sideA));
 };
 
@@ -60,12 +60,12 @@ $(document).ready(function(){
 		}
 
 		revealResults();
-		
+
 		event.preventDefault();
 	});
 });
 
-// jQuery functions 
+// jQuery functions
 
 var resetResults = function(){
 	$(".results").hide();
@@ -75,10 +75,11 @@ var resetResults = function(){
 };
 
 var createTriangleHtml = function(a, b, c) {
-	var pointA = (a).toString() + ", " + (0).toString() + " "
-	var pointB = (b * 20).toString() + ", " + (0) + " ";
-	var pointC = (c * 10).toString() + ", " + (c * 10) + " ";
-	return "<svg height='2000' width='2000' class='triangle_bit'><polygon points='" + pointA + pointB + pointC + "' style='fill:lime;stroke:purple;stroke-width:1' /></svg>";
+	var pointA = (20).toString() + ", " + (0).toString() + " "
+	var pointB = (a + 20).toString() + ", " + (0) + " ";
+	var cPoints = intersection(0, 0, c, a, 0, b)
+	var pointC = (cPoints[0]).toString() + ", " + (cPoints[2]) + " ";
+	return "<svg height='2000' width='2000' class='triangle_bit'><polygon points='" + pointA + pointB + pointC + "' style='fill:lime;stroke:purple;stroke-width:1'/></svg>";
 }
 
 
@@ -89,9 +90,57 @@ var revealResults = function(){
 };
 
 
+function intersection(x0, y0, r0, x1, y1, r1) {
+    var a, dx, dy, d, h, rx, ry;
+    var x2, y2;
 
+    /* dx and dy are the vertical and horizontal distances between
+     * the circle centers.
+     */
+    dx = x1 - x0;
+    dy = y1 - y0;
 
+    /* Determine the straight-line distance between the centers. */
+    d = Math.sqrt((dy*dy) + (dx*dx));
 
+    /* Check for solvability. */
+    if (d > (r0 + r1)) {
+        /* no solution. circles do not intersect. */
+        return false;
+    }
+    if (d < Math.abs(r0 - r1)) {
+        /* no solution. one circle is contained in the other */
+        return false;
+    }
 
+    /* 'point 2' is the point where the line through the circle
+     * intersection points crosses the line between the circle
+     * centers.
+     */
 
+    /* Determine the distance from point 0 to point 2. */
+    a = ((r0*r0) - (r1*r1) + (d*d)) / (2.0 * d) ;
 
+    /* Determine the coordinates of point 2. */
+    x2 = x0 + (dx * a/d);
+    y2 = y0 + (dy * a/d);
+
+    /* Determine the distance from point 2 to either of the
+     * intersection points.
+     */
+    h = Math.sqrt((r0*r0) - (a*a));
+
+    /* Now determine the offsets of the intersection points from
+     * point 2.
+     */
+    rx = -dy * (h/d);
+    ry = dx * (h/d);
+
+    /* Determine the absolute intersection points. */
+    var xi = x2 + rx;
+    var xi_prime = x2 - rx;
+    var yi = y2 + ry;
+    var yi_prime = y2 - ry;
+
+    return [xi, xi_prime, yi, yi_prime];
+};
