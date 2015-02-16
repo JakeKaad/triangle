@@ -43,27 +43,50 @@ var triangleType = function(sideA, sideB, sideC) {
 // Start jQuery functions for index.html:
 
 $(document).ready(function(){
+
 	$("#triangle").submit(function(event){
 		resetResults();
 
 		var sideA = parseInt($("#sideA").val());
 		var sideB = parseInt($("#sideB").val());
 		var sideC = parseInt($("#sideC").val());
+		var scaleValue = parseInt($("#scale-slider").val());
 		var results = triangular(sideA, sideB, sideC);
 
 		$("#triangle_type").text(results);
 		if(results === "a triangle"){
 			$("#dont").text(" don't");
 		} else {
-			var triangleHtml = createTriangleHtml(sideA, sideB, sideC)
+			var triangleHtml = createTriangleHtml(sideA, sideB, sideC, scaleValue)
 			$("#triangle_polygon").append(triangleHtml);
+			$("#scaleShow").text(scaleValue);
 		}
 
 		revealResults();
 
+
+	$("#scale-slider").on({change: function( event, ui ) {
+			$("#drawTriangle").remove();
+			var sideAUpdate = parseInt($("#sideA").val());
+			var sideBUpdate = parseInt($("#sideB").val());
+			var sideCUpdate = parseInt($("#sideC").val());
+			var scaleUpdate = parseInt($("#scale-slider").val());
+			var triangleHTML = createTriangleHtml(sideAUpdate, sideBUpdate, sideCUpdate, scaleUpdate);
+	    $("#triangle_polygon").append(triangleHTML);
+
+			}
+		});
+		// $( '#scale-slider').on( "slidechange", function( event, ui ) {
+		// 	alert("test");
+		// } );
+
+		// trigger('slidechange');
 		event.preventDefault();
 	});
 });
+
+
+
 
 // jQuery functions
 
@@ -74,12 +97,12 @@ var resetResults = function(){
 	$(".triangle_bit").remove();
 };
 
-var createTriangleHtml = function(a, b, c) {
-	var pointA = (20).toString() + ", " + (0).toString() + " "
-	var pointB = (a + 20).toString() + ", " + (0) + " ";
+var createTriangleHtml = function(a, b, c, scale) {
+	var pointA = (0).toString() + ", " + (0).toString() + " "
+	var pointB = ((a * scale)).toString() + ", " + (0).toString() + " ";
 	var cPoints = intersection(0, 0, c, a, 0, b)
-	var pointC = (cPoints[0]).toString() + ", " + (cPoints[2]) + " ";
-	return "<svg height='2000' width='2000' class='triangle_bit'><polygon points='" + pointA + pointB + pointC + "' style='fill:lime;stroke:purple;stroke-width:1'/></svg>";
+	var pointC = (cPoints[0] * scale).toString() + ", " + (cPoints[2] * scale).toString() + " ";
+	return "<svg id='drawTriangle'height='" + ((a + b + c) * scale).toString() + "' width='" + ((a + b + c) * scale).toString() + "' class='triangle_bit'><polygon points='" + pointA + pointB + pointC + "' style='fill:blue;stroke:purple;stroke-width:1'/></svg>";
 }
 
 

@@ -4,7 +4,9 @@
     <title>Triangular</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css" charset="utf-8">
-    <script src="./js/jquery-1.11.2.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <script src="./js/scripts.js"></script>
   </head>
   <body>
@@ -31,12 +33,17 @@
           <input id="sideC" type="text" placeholder="5"></input>
         </div>
 
+        <div class="form-group">
+          <label for="scale-slider">Scale</label>
+          <input id="scale-slider" type="range" name="scale" value="5" min="0" max="100">
+        </div>
+
         <button type="submit" class="btn btn-success">Triangulate</button>
       </form>
 
       <div class="well results">
-        <p>
-          You<span id="dont"></span> have <span id="triangle_type"></span>.
+        <p class="results_text">
+          You<span id="dont"></span> have <span id="triangle_type"></span> shown at <span id="scaleShow"></span> times scale.
         </p>
 
         <div id="triangle_polygon">
