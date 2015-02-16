@@ -2,4 +2,9 @@
 	display: none;
 	margin-top: 50px;
 	font-size: 3em;
+	align: center;
+	padding: 100px 100px 100px 100px;
+}
+.results_text {
+	font-size: 0.5em;
 }
