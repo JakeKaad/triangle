@@ -73,9 +73,16 @@ $(document).ready(function(){
 			var scaleUpdate = parseInt($("#scale-slider").val());
 			var triangleHTML = createTriangleHtml(sideAUpdate, sideBUpdate, sideCUpdate, scaleUpdate);
 	    $("#triangle_polygon").append(triangleHTML);
-
 			}
 		});
+		$("#triangle_polygon").draggable();
+
+
+		var rotation = 0
+		$("#rotateTriangle").click(function() {
+    	rotation += 5;
+    	$("#drawTriangle").rotate(rotation);
+});
 		// $( '#scale-slider').on( "slidechange", function( event, ui ) {
 		// 	alert("test");
 		// } );
@@ -85,6 +92,13 @@ $(document).ready(function(){
 	});
 });
 
+jQuery.fn.rotate = function(degrees) {
+	$(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+		'-moz-transform' : 'rotate('+ degrees +'deg)',
+		'-ms-transform' : 'rotate('+ degrees +'deg)',
+		'transform' : 'rotate('+ degrees +'deg)'});
+	return $(this);
+};
 
 
 
@@ -102,7 +116,18 @@ var createTriangleHtml = function(a, b, c, scale) {
 	var pointB = ((a * scale)).toString() + ", " + (0).toString() + " ";
 	var cPoints = intersection(0, 0, c, a, 0, b)
 	var pointC = (cPoints[0] * scale).toString() + ", " + (cPoints[2] * scale).toString() + " ";
-	return "<svg id='drawTriangle'height='" + ((a + b + c) * scale).toString() + "' width='" + ((a + b + c) * scale).toString() + "' class='triangle_bit'><polygon points='" + pointA + pointB + pointC + "' style='fill:blue;stroke:purple;stroke-width:1'/></svg>";
+	return "<svg id='drawTriangle'  class='svgBox' height='" + (longestSide(a,b,c) * scale).toString() + "' width='" + ((longestSide(a,b,c) * scale)).toString()  + "' class='triangle_bit'><polygon points='" + pointA + pointB + pointC + "' style='fill:blue;stroke:purple;stroke-width:1'/></svg>";
+}
+
+var longestSide = function(a, b, c) {
+	if ((a > b) && (a > c)) {
+		return a
+	} else if ((b > c)) {
+		return b
+	} else {
+		return c
+	};
+
 }
 
 
